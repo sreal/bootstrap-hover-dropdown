@@ -101,7 +101,7 @@
             });
 
             function openDropdown(event) {
-                if($this.parents(".navbar").find(".navbar-toggle").is(":visible")) {
+                if($this.parents('.navbar').find('.navbar-toggle').is(':visible')) {
                     // If we're inside a navbar, don't do anything when the
                     // navbar is collapsed, as it makes the navbar pretty unusable.
                     return;
@@ -114,7 +114,7 @@
 
                 // delay for hover event.
                 timeoutHover = window.setTimeout(function () {
-                    $allDropdowns.find(':focus').blur();
+                    $allDropdowns.find(':focus').trigger('blur');
 
                     if(settings.instantlyCloseOthers === true)
                         $allDropdowns.removeClass('open');
@@ -130,7 +130,7 @@
     };
 
     $(function () {
-        // apply dropdownHover to all elements with the data-hover="dropdown" attribute
+        // apply dropdownHover to all elements with the data-hover='dropdown' attribute
         $('[data-hover="dropdown"]').dropdownHover();
     });
 })(jQuery, window);
