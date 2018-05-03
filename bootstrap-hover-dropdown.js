@@ -45,7 +45,7 @@
                 settings = $.extend(true, {}, defaults, options, data),
                 timeout, timeoutHover;
 
-            $parent.hover(function (event) {
+            $parent.on('hover', function (event) {
                 // so a neighbor can't open the dropdown
                 if(!$parent.hasClass('open') && !$this.is(event.target)) {
                     // stop this event, stop executing any code
@@ -65,7 +65,7 @@
             });
 
             // this helps with button groups!
-            $this.hover(function (event) {
+            $this.on('hover', function (event) {
                 // this helps prevent a double event from firing.
                 // see https://github.com/CWSpear/bootstrap-hover-dropdown/issues/55
                 if(!$parent.hasClass('open') && !$parent.is(event.target)) {
@@ -81,7 +81,7 @@
             $parent.find('.dropdown-submenu').each(function (){
                 var $this = $(this);
                 var subTimeout;
-                $this.hover(function () {
+                $this.on('hover', function () {
                     window.clearTimeout(subTimeout);
                     $this.children('.dropdown-menu').show();
                     // always close submenu siblings instantly
@@ -105,14 +105,14 @@
                 window.clearTimeout(timeout);
                 // restart hover timer
                 window.clearTimeout(timeoutHover);
-                
-                // delay for hover event.  
+
+                // delay for hover event.
                 timeoutHover = window.setTimeout(function () {
                     $allDropdowns.find(':focus').blur();
 
                     if(settings.instantlyCloseOthers === true)
                         $allDropdowns.removeClass('open');
-                    
+
                     // clear timer for hover event
                     window.clearTimeout(timeoutHover);
                     $this.attr('aria-expanded', 'true');
@@ -123,7 +123,7 @@
         });
     };
 
-    $(document).ready(function () {
+    $(function () {
         // apply dropdownHover to all elements with the data-hover="dropdown" attribute
         $('[data-hover="dropdown"]').dropdownHover();
     });
